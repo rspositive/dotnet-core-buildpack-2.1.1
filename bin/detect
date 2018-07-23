@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+BUILD_DIR=$1
+
+BUILDPACK_DIR=`dirname $(readlink -f ${BASH_SOURCE%/*})`
+VERSION=`cat $BUILDPACK_DIR/VERSION`
+
+if [ -f "$BUILD_DIR"/*.runtimeconfig.json ] || [[ -n $(find $BUILD_DIR -name '*.csproj' -o -name '*.fsproj' -o -name '*.vbproj') ]]; then
+  echo "ASP.NET Core (buildpack-$VERSION)"
+  exit 0
+else
+  echo "no"
+  exit 1
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+
+BUILD_DIR=$1
+cat $BUILD_DIR/tmp/dotnet-core-buildpack-release-step.yml
